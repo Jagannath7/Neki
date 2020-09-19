@@ -5,4 +5,15 @@
     <string name="email_id">Email ID</string>
     <string name="password">Password</string>
     <string name="register_login">Register/Login</string>
+    <string name="you_are_a_first_time_user_please_fill_up_the_following_details">You are a First Time User. Please Fill Up the Following Details.</string>
+    <string name="personal_details">Personal Details</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="address">Address</string>
+    <string name="street_address">Street Address</string>
+    <string name="landmark">Landmark</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="pincode">Pincode</string>
+    <string name="submit">Submit</string>
 </resources>

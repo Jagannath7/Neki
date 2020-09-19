@@ -1,7 +1,9 @@
 package com.systemtron.neki.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -97,6 +99,12 @@ class LoginActivity : AppCompatActivity() {
             }.addOnSuccessListener {
                 Toast.makeText(this, "Sign Up Successful", Toast.LENGTH_SHORT).show()
                 Log.d(Tags.ishaanTag, "Sign up Successful")
+                Log.d(Tags.ishaanTag,"Login -> Signup")
+
+                Handler().postDelayed({
+                    val signUpIntent = Intent(this@LoginActivity, SignUpActivity::class.java)
+                    startActivity(signUpIntent)
+                }, 1000)
             }.addOnFailureListener {
                 Toast.makeText(this, "Sign Up Failed", Toast.LENGTH_SHORT).show()
                 Log.d(Tags.ishaanTag, "Sign up Failed")
