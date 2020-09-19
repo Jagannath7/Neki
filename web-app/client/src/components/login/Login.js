@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -24,6 +25,43 @@ function Copyright() {
       {"."}
     </Typography>
   );
+=======
+import React, { Component } from "react";
+import ReactDOM from 'react-dom';
+import fire from './config/fire';
+import LandingPage from '../LandingPage';
+import props from 'react-dom';
+import Structure from './Structure';
+
+class Login extends Component{
+  constructor(){
+    super(props);
+    this.state={
+      user:{},
+    }
+  }
+  componentDidMount(){
+    this.authListener();
+  }
+   authListener() {
+     fire.auth().onAuthStateChanged((user)=>{
+       //console.log(user);
+       if(user){
+         this.setState({user});
+       }else{
+         this.setState({user:null});
+       }
+     });
+   }
+   render(){
+    return(
+      <div className="Login">
+        {this.state.user ? (<LandingPage/>):(<Login/>)}
+      </div>
+    );
+   }
+   
+>>>>>>> 47f12baa56fc88d70eaa4bc4cf629a12d12fed46
 }
 
 const useStyles = makeStyles((theme) => ({
