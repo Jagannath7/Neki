@@ -12,6 +12,10 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import firebase from '../config/fire';
+import { auth } from "firebase";
+
+
 
 function Copyright() {
   return (
@@ -55,7 +59,7 @@ export default function SignIn() {
   };
 
   const [formData, updateFormData] = useState(initialFormData);
-
+  const [isLoggedIn, setLoggedIn] = useState(false);
   const handleChange = (e) => {
     updateFormData({
       ...formData,
@@ -68,6 +72,10 @@ export default function SignIn() {
   const handleForm = (e) => {
     e.preventDefault();
     console.log(formData);
+    firebase.auth().createUserWithEmailAndPassword(formData.email,formData.password)
+    .then(res=>{if(res.user){
+      auth.setLoggedIn(true);
+    } }).catch(err=>{console.log(err)})
   };
   return (
     <Container component="main" maxWidth="xs">

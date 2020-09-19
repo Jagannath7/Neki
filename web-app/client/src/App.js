@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import LandingPage from "./components/LandingPage";
-import Login from "./components/login/Login";
+import Login from "./components/Login";
 import Register from "./components/Register";
 import { Router, Route, Switch } from "react-router-dom";
 import history from "./history";
