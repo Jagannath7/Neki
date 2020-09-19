@@ -30,6 +30,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        if (currentUser != null) {
+            val signInIntent = Intent(this@LoginActivity, HomeActivity::class.java)
+            startActivity(signInIntent)
+        }
+
         btnLogin.setOnClickListener {
             val email = etEmailId.editText?.text.toString()
             val password = etPassword.editText?.text.toString()
@@ -74,6 +79,12 @@ class LoginActivity : AppCompatActivity() {
             }.addOnSuccessListener {
                 Toast.makeText(this, "Sign In Successful", Toast.LENGTH_SHORT).show()
                 Log.d(Tags.ishaanTag, "Sign in Successful")
+                Log.d(Tags.ishaanTag, "Login -> Home")
+
+                Handler().postDelayed({
+                    val signInIntent = Intent(this@LoginActivity, HomeActivity::class.java)
+                    startActivity(signInIntent)
+                }, 1000)
             }.addOnFailureListener {
                 Toast.makeText(this, "Sign In Failed", Toast.LENGTH_SHORT).show()
                 Log.d(Tags.ishaanTag, "Sign in Failed")
@@ -99,7 +110,7 @@ class LoginActivity : AppCompatActivity() {
             }.addOnSuccessListener {
                 Toast.makeText(this, "Sign Up Successful", Toast.LENGTH_SHORT).show()
                 Log.d(Tags.ishaanTag, "Sign up Successful")
-                Log.d(Tags.ishaanTag,"Login -> Signup")
+                Log.d(Tags.ishaanTag, "Login -> Signup")
 
                 Handler().postDelayed({
                     val signUpIntent = Intent(this@LoginActivity, SignUpActivity::class.java)

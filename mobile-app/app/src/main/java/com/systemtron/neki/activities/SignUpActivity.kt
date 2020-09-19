@@ -1,8 +1,10 @@
 package com.systemtron.neki.activities
 
+import android.content.Intent
 import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -61,6 +63,13 @@ class SignUpActivity : AppCompatActivity() {
             .set(user)
             .addOnSuccessListener {
                 Log.d(Tags.ishaanTag, "Added to user db")
+                Log.d(Tags.ishaanTag, "Sign up -> Home")
+
+                Handler().postDelayed({
+                    val homeIntent = Intent(this, HomeActivity::class.java)
+                    startActivity(homeIntent)
+                }, 1000)
+
             }.addOnFailureListener {
                 Log.d(Tags.ishaanTag, "User db failed ${it.toString()}")
             }
