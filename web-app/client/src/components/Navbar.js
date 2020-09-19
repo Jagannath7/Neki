@@ -1,6 +1,5 @@
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
-
+import { Link, ListItem, Tab } from "@material-ui/core";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -37,17 +36,19 @@ ElevationScroll.propTypes = {
 
 export default function Navbar(props) {
   return (
-    <React.Fragment className="top">
+    <React.Fragment>
       <CssBaseline />
       <ElevationScroll {...props}>
         <AppBar className="appBar" position="static">
           <Toolbar>
             <Typography variant="h6">Neki</Typography>
-            {/* <Link to="/register">
-              <Button color="inherit">Register</Button>
-            </Link> */}
-            <Link to="/login">
-              <Button>Login</Button>
+
+            <Link href="/login">
+              <Button type="button">{props.text}</Button>
+            </Link>
+
+            <Link href="/register">
+              <Button type="button">register</Button>
             </Link>
           </Toolbar>
         </AppBar>

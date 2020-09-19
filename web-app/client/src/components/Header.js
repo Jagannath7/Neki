@@ -1,9 +1,11 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
 import "./Header.css";
+import Grid from "@material-ui/core/Grid";
+
 import { makeStyles } from "@material-ui/core/styles";
 import people from "../assests/people.png";
-
+import Link from "@material-ui/core/Link";
 /*
 This is code for Header used for showing title tagline and image
  > title : styling is to be done
@@ -70,6 +72,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header() {
+  const post = {
+    linkText: "hello",
+  };
   const classes = useStyles();
   return (
     <>
