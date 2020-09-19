@@ -12,6 +12,7 @@
         android:id="@+id/cvNGOInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorBackground"
         app:cardCornerRadius="16dp"
         app:cardElevation="10dp">
 
@@ -314,7 +315,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSubmit"
+        android:id="@+id/btnDonate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/etDesc"
@@ -323,7 +324,6 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/colorButton"
-        android:enabled="false"
         android:text="@string/place_request"
         android:textColor="@android:color/black" />
 </RelativeLayout>
