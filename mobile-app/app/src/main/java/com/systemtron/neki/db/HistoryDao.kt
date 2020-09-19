@@ -7,5 +7,5 @@ import androidx.room.Insert
 interface HistoryDao {
 
     @Insert
-    suspend fun insertTask(history: History)
+    suspend fun insertTransaction(history: History)
 }

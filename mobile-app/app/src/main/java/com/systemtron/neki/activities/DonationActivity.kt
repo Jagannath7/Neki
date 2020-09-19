@@ -11,10 +11,16 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.systemtron.neki.R
+import com.systemtron.neki.db.AppDatabase
+import com.systemtron.neki.db.History
 import com.systemtron.neki.modelClass.Transaction
 import com.systemtron.neki.utils.Constants
 import com.systemtron.neki.utils.Tags
 import kotlinx.android.synthetic.main.activity_donation.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,6 +40,10 @@ class DonationActivity : AppCompatActivity() {
 
     private val db by lazy {
         Firebase.firestore
+    }
+
+    val historyDB by lazy {
+        AppDatabase.getDatabase(this)
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -92,6 +102,18 @@ class DonationActivity : AppCompatActivity() {
                         val returnIntent = Intent(this, HomeActivity::class.java)
                         startActivity(returnIntent)
                     }, 1000)
+
+                    GlobalScope.launch(Dispatchers.Main) {
+                        withContext(Dispatchers.IO) {
+                            return@withContext historyDB.historyDao()
+                                .insertTransaction(
+                                    History(
+                                        id, date, name, description
+                                    )
+                                )
+                        }
+                        finish()
+                    }
                 }
                 .addOnFailureListener {
                     Log.d(Tags.ishaanTag, "Request Failed, ${it.toString()}")
