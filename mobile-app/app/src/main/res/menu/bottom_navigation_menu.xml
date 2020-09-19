@@ -2,13 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menuSearch"
+        android:icon="@drawable/baseline_search_black_24dp"
         android:title="@string/search" />
 
     <item
         android:id="@+id/menuDonate"
+        android:icon="@drawable/baseline_groups_black_24dp"
         android:title="@string/donate" />
 
     <item
         android:id="@+id/menuProfile"
+        android:icon="@drawable/baseline_account_circle_black_24dp"
         android:title="@string/profile" />
 </menu>

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -87,13 +86,13 @@ class DonateFragment : Fragment() {
 
         val welcomeInt = sharedPreferences?.getInt(Constants.sharedPreferencesWelcome, -1)
         Log.d(Tags.ishaanTag, "Welcome Int: $welcomeInt")
-        getNameFromFirestore(welcomeInt)
+        getNameFromFirestore(welcomeInt, inflatedView)
 
-        addNGO()
+        addNGO(inflatedView)
         return inflatedView
     }
 
-    private fun addNGO() {
+    private fun addNGO(inflatedView: View) {
         db.collection("ngos")
             .limit(10)
             .get()
@@ -105,7 +104,7 @@ class DonateFragment : Fragment() {
                     Log.d(Tags.ishaanTag, "${ngo.emailId} ${ngo.listCategory}")
                     listOfNGOs.add(ngo)
                 }
-                rvSuggestions.apply {
+                inflatedView.rvSuggestions.apply {
                     layoutManager =
                         LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                     adapter = NGOAdapter(listOfNGOs, requireContext())
@@ -114,7 +113,7 @@ class DonateFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun getNameFromFirestore(welcomeInt: Int?) {
+    private fun getNameFromFirestore(welcomeInt: Int?, inflatedView: View) {
         db.collection("users")
             .document(currentUser!!.email.toString())
             .get()
@@ -128,9 +127,9 @@ class DonateFragment : Fragment() {
                     Log.d(Tags.ishaanTag, "${nameList[0]} $receivedName")
                     name = nameList[0]
                     if (welcomeInt == 0) {
-                        tvWelcomeOrHello.text = "Hello, $name!"
+                        inflatedView.tvWelcomeOrHello.text = "Hello, $name!"
                     } else if (welcomeInt == 1) {
-                        tvWelcomeOrHello.text = "Welcome Back, $name!"
+                        inflatedView.tvWelcomeOrHello.text = "Welcome Back, $name!"
                     }
                 }
             }.addOnFailureListener {

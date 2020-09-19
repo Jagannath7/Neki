@@ -72,7 +72,7 @@ class DonationActivity : AppCompatActivity() {
 
         btnDonate.setOnClickListener {
             val description = etDesc.editText?.text.toString()
-            val id = "DON${System.currentTimeMillis() % 1000000}"
+            val id = "DON${System.currentTimeMillis() % 10000000}"
             val current = System.currentTimeMillis()
             val sdf = SimpleDateFormat("MMM dd,yyyy")
             val dateInstance = Date(current)
@@ -98,11 +98,6 @@ class DonationActivity : AppCompatActivity() {
                     Log.d(Tags.ishaanTag, "Request Placed")
                     Toast.makeText(this, "Request Placed", Toast.LENGTH_SHORT).show()
 
-                    Handler().postDelayed({
-                        val returnIntent = Intent(this, HomeActivity::class.java)
-                        startActivity(returnIntent)
-                    }, 1000)
-
                     GlobalScope.launch(Dispatchers.Main) {
                         withContext(Dispatchers.IO) {
                             return@withContext historyDB.historyDao()
@@ -112,11 +107,20 @@ class DonationActivity : AppCompatActivity() {
                                     )
                                 )
                         }
-                        finish()
                     }
+
+                    Handler().postDelayed({
+                        val returnIntent = Intent(this, HomeActivity::class.java)
+                        startActivity(returnIntent)
+                    }, 1000)
                 }
                 .addOnFailureListener {
                     Log.d(Tags.ishaanTag, "Request Failed, ${it.toString()}")
+                    Toast.makeText(
+                        this,
+                        "Request Failed, Please Try Again Later",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
         }
     }

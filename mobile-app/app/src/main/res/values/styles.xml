@@ -21,4 +21,13 @@
         <item name="colorOnSurface">@color/colorText</item>
         <item name="colorPrimary">@color/colorBar</item>
     </style>
+
+    <style name="Theme.App" parent="Theme.MaterialComponents">
+        ...
+        <item name="bottomNavigationStyle">
+            @style/Widget.MaterialComponents.BottomNavigationView.Colored
+        </item>
+        <item name="colorPrimary">@color/colorBar</item>
+        <item name="colorOnPrimary">@color/colorText</item>
+    </style>
 </resources>
