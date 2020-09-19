@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { db, auth } from '../config/fire';
 
 function Copyright() {
   return (
@@ -75,8 +76,27 @@ export default function Register() {
 
   const handleForm = (e) => {
     e.preventDefault();
-    console.log(formData);
+    var docid=formData.email;
+    db.collection("ngos").doc(docid).set({
+      email: formData.email,
+      city: formData.city,
+      landmark: formData.landmark,
+      phoneNumber:formData.phone,
+      state: formData.state,
+      name: formData.name,
+      tagline: formData.tagline,
+      street: formData.street,
+      iconurl: formData.iconurl,
+      password: formData.password,
+   })
+   .then(function(docRef) {
+      console.log("Document written");
+   })
+   .catch(function(error) {
+      console.error("Error adding document: ", error);
+   });
   };
+
 
   return (
     <Container component="main" maxWidth="xs">
