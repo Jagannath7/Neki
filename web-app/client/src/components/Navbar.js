@@ -1,11 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import { Link, Redirect } from "react-router-dom";
+
+import PropTypes from "prop-types";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import Button from "@material-ui/core/Button";
+import "./Navbar.css";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -34,19 +37,21 @@ ElevationScroll.propTypes = {
 
 export default function Navbar(props) {
   return (
-    <React.Fragment>
+    <React.Fragment className="top">
       <CssBaseline />
       <ElevationScroll {...props}>
-        <AppBar>
+        <AppBar className="appBar" position="static">
           <Toolbar>
             <Typography variant="h6">Neki</Typography>
-            <Button color="inherit">Register</Button>
-            <Button color="inherit">Login</Button>
+            {/* <Link to="/register">
+              <Button color="inherit">Register</Button>
+            </Link> */}
+            <Link to="/login">
+              <Button>Login</Button>
+            </Link>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
-      
-      
     </React.Fragment>
   );
 }
