@@ -178,20 +178,21 @@ export default function Register() {
     /*
     please change the following code be replacing formData by  returnedTarget 
     */
+   
     var docid = formData.email;
     db.collection("ngos")
       .doc(docid)
       .set({
-        email: formData.email,
-        city: formData.city,
-        landmark: formData.landmark,
-        phoneNumber: formData.phone,
-        state: formData.state,
-        name: formData.name,
-        tagline: formData.tagline,
-        street: formData.street,
-        iconurl: formData.iconurl,
-        password: formData.password,
+        categories: returnedTarget.cat,
+        city: returnedTarget.city,
+        landmark: returnedTarget.landmark,
+        phoneNumber: returnedTarget.phone,
+        state: returnedTarget.state,
+        fullName: returnedTarget.name,
+        tagline: returnedTarget.tagline,
+        streetAddress: returnedTarget.street,
+        iconUrl: returnedTarget.iconurl,
+        pincode: returnedTarget.pincode,
       })
       .then(function (docRef) {
         console.log("Document written");
@@ -199,13 +200,7 @@ export default function Register() {
       .catch(function (error) {
         console.error("Error adding document: ", error);
       });
-      let bucketName='images';
-      let file = returnedTarget.iconimg;
-      let storageRef = firebase.storage().ref(`${bucketName}/${returnedTarget.iconimg}`);
-      let uploadTask=storageRef.put(file)
-      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,()=>{
-        let downloadURL=uploadTask.snapshot.downloadURL;
-      })
+      
       
   };
 
