@@ -74,4 +74,10 @@ class SignUpActivity : AppCompatActivity() {
                 Log.d(Tags.ishaanTag, "User db failed ${it.toString()}")
             }
     }
+
+    override fun onBackPressed() {
+        Log.d(Tags.ishaanTag, "Sign up -> Login")
+        val backIntent = Intent(this, LoginActivity::class.java)
+        startActivity(backIntent)
+    }
 }

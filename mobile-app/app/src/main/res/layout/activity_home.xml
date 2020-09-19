@@ -24,6 +24,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:elevation="10dp"
         app:itemRippleColor="@color/colorText"
         app:menu="@menu/bottom_navigation_menu" />
 

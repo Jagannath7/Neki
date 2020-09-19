@@ -123,6 +123,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        Log.d(Tags.ishaanTag, "Finishing App")
         finishAffinity()
     }
 }
