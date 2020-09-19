@@ -27,4 +27,6 @@
     <string name="welcome">Welcome</string>
     <string name="upload_profile_picture">Upload Profile Picture</string>
     <string name="showing_ngos_who_deal_with_clothing">Showing NGOs who deal with Clothing</string>
+    <string name="contact_information">Contact Information</string>
+    <string name="phone">Phone No.</string>
 </resources>
