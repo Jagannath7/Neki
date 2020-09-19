@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.systemtron.neki.R
@@ -22,6 +21,7 @@ import com.systemtron.neki.adapter.NGOAdapter
 import com.systemtron.neki.modelClass.NGO
 import com.systemtron.neki.utils.Constants
 import com.systemtron.neki.utils.Tags
+import kotlinx.android.synthetic.main.fragment_donate.*
 import kotlinx.android.synthetic.main.fragment_donate.view.*
 
 class DonateFragment : Fragment() {
@@ -37,8 +37,6 @@ class DonateFragment : Fragment() {
     private var name: String = ""
 
     private val listOfNGOs = ArrayList<NGO>()
-
-    private lateinit var noteListener: ListenerRegistration
 
     private val arrayOfCategory = arrayListOf(
         "Clothing",
@@ -89,27 +87,9 @@ class DonateFragment : Fragment() {
 
         val welcomeInt = sharedPreferences?.getInt(Constants.sharedPreferencesWelcome, -1)
         Log.d(Tags.ishaanTag, "Welcome Int: $welcomeInt")
-        getNameFromFirestore()
-
-        Handler().postDelayed({
-            Log.d(Tags.ishaanTag, "name from getName: $name")
-            if (welcomeInt == 0) {
-                inflatedView.tvWelcomeOrHello.text = "Hello, $name!"
-            } else if (welcomeInt == 1) {
-                inflatedView.tvWelcomeOrHello.text = "Welcome Back, $name!"
-            }
-        }, 2000)
+        getNameFromFirestore(welcomeInt)
 
         addNGO()
-        Handler().postDelayed({
-            Log.d(Tags.ishaanTag, "$listOfNGOs")
-            inflatedView.rvSuggestions.apply {
-                layoutManager =
-                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                adapter = NGOAdapter(listOfNGOs, requireContext())
-            }
-        }, 3000)
-
         return inflatedView
     }
 
@@ -125,10 +105,16 @@ class DonateFragment : Fragment() {
                     Log.d(Tags.ishaanTag, "${ngo.emailId} ${ngo.listCategory}")
                     listOfNGOs.add(ngo)
                 }
+                rvSuggestions.apply {
+                    layoutManager =
+                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                    adapter = NGOAdapter(listOfNGOs, requireContext())
+                }
             }
     }
 
-    private fun getNameFromFirestore() {
+    @SuppressLint("SetTextI18n")
+    private fun getNameFromFirestore(welcomeInt: Int?) {
         db.collection("users")
             .document(currentUser!!.email.toString())
             .get()
@@ -141,6 +127,11 @@ class DonateFragment : Fragment() {
                     val nameList = receivedName.split(" ")
                     Log.d(Tags.ishaanTag, "${nameList[0]} $receivedName")
                     name = nameList[0]
+                    if (welcomeInt == 0) {
+                        tvWelcomeOrHello.text = "Hello, $name!"
+                    } else if (welcomeInt == 1) {
+                        tvWelcomeOrHello.text = "Welcome Back, $name!"
+                    }
                 }
             }.addOnFailureListener {
                 Log.d(Tags.ishaanTag, "Name Failed, ${it.toString()}")

@@ -8,5 +8,6 @@ class Constants {
         const val userPP = "userPP"
         const val keyName = "fullName"
         const val keyPP = "urlPP"
+        const val keyCatName = "catName"
     }
 }
