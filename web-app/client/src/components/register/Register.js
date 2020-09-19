@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -49,6 +49,35 @@ const useStyles = makeStyles((theme) => ({
 export default function Register() {
   const classes = useStyles();
 
+  const initialFormData = {
+    name: "",
+    tagline: "",
+    email: "",
+    phone: "",
+    street: "",
+    city: "",
+    state: "",
+    landmark: "",
+    iconurl: "",
+    password: "",
+  };
+
+  const [formData, updateFormData] = useState(initialFormData);
+
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
+
+      // Trimming any whitespace
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
+
+  const handleForm = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -64,13 +93,14 @@ export default function Register() {
             <Grid item xs={12}>
               <TextField
                 autoComplete="name"
-                name="Name"
+                name="name"
                 variant="outlined"
                 required
                 fullWidth
                 id="Name"
                 label="Name"
                 autoFocus
+                onChange={handleChange}
               />
             </Grid>
 
@@ -83,6 +113,7 @@ export default function Register() {
                 label="tagline"
                 name="tagline"
                 autoComplete="tagline"
+                onChange={handleChange}
               />
             </Grid>
 
@@ -95,6 +126,7 @@ export default function Register() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={handleChange}
               />
             </Grid>
 
@@ -107,6 +139,7 @@ export default function Register() {
                 label="Phone"
                 name="phone"
                 autoComplete="phone"
+                onChange={handleChange}
               />
             </Grid>
 
@@ -119,6 +152,7 @@ export default function Register() {
                 label="street"
                 name="street"
                 autoComplete="street"
+                onChange={handleChange}
               />
             </Grid>
 
@@ -131,6 +165,7 @@ export default function Register() {
                 label="city"
                 name="city"
                 autoComplete="city"
+                onChange={handleChange}
               />
             </Grid>
 
@@ -143,6 +178,7 @@ export default function Register() {
                 label="state"
                 name="state"
                 autoComplete="state"
+                onChange={handleChange}
               />
             </Grid>
 
@@ -155,6 +191,7 @@ export default function Register() {
                 label="landmark"
                 name="landmark"
                 autoComplete="landmark"
+                onChange={handleChange}
               />
             </Grid>
 
@@ -167,6 +204,7 @@ export default function Register() {
                 label="Icon Url"
                 name="url"
                 autoComplete="url"
+                onChange={handleChange}
               />
             </Grid>
 
@@ -180,12 +218,7 @@ export default function Register() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                onChange={handleChange}
               />
             </Grid>
           </Grid>
@@ -195,6 +228,7 @@ export default function Register() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleForm}
           >
             Sign Up
           </Button>
