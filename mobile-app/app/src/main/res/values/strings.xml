@@ -32,4 +32,10 @@
     <string name="please_fill_the_desciption_and_upload_pictures_of_the_items">Please Fill the Description and Upload Pictures of the Items.</string>
     <string name="what_are_you_donating_n_enter_quantity_as_well_complete_description">What are you Donating? \n (Enter Quantity as well Complete Description)</string>
     <string name="place_request">Place Request</string>
+    <string name="edit_your_information">Edit Your Information</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="your_donations">Your Donations</string>
+    <string name="to">To:</string>
+    <string name="date">Date:</string>
+    <string name="what_you_have_donated">What You Have Donated?</string>
 </resources>
