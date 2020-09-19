@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Neki</string>
     <string name="logo_picture">Logo Picture</string>
+    <string name="please_enter_email_id_and_password_to_register_login">Please Enter Email ID and Password to Register/Login</string>
+    <string name="email_id">Email ID</string>
+    <string name="password">Password</string>
+    <string name="register_login">Register/Login</string>
 </resources>
