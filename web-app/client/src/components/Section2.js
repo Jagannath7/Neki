@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
 import people from "../assests/people.png";
 import "./Section2.css";
-import cx from "classnames";
+//import cx from "classnames";
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
