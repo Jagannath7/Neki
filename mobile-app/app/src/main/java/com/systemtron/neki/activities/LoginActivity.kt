@@ -43,8 +43,8 @@ class LoginActivity : AppCompatActivity() {
         if (currentUser != null) {
             editor.putInt(Constants.sharedPreferencesWelcome, 1)
             editor.apply()
-            val signInIntent = Intent(this@LoginActivity, HomeActivity::class.java)
-            startActivity(signInIntent)
+            val signUpIntent = Intent(this@LoginActivity, HomeActivity::class.java)
+            startActivity(signUpIntent)
         }
 
         btnLogin.setOnClickListener {
@@ -93,9 +93,6 @@ class LoginActivity : AppCompatActivity() {
                 Log.d(Tags.ishaanTag, "Sign in Successful")
                 Log.d(Tags.ishaanTag, "Login -> Home")
 
-                editor.putInt(Constants.sharedPreferencesWelcome, 1)
-                editor.apply()
-
                 Handler().postDelayed({
                     val signInIntent = Intent(this@LoginActivity, HomeActivity::class.java)
                     startActivity(signInIntent)
@@ -127,6 +124,9 @@ class LoginActivity : AppCompatActivity() {
                 Log.d(Tags.ishaanTag, "Sign up Successful")
                 Log.d(Tags.ishaanTag, "Login -> Signup")
 
+                editor.putInt(Constants.sharedPreferencesWelcome, 1)
+                editor.apply()
+
                 Handler().postDelayed({
                     val signUpIntent = Intent(this@LoginActivity, SignUpActivity::class.java)
                     startActivity(signUpIntent)
@@ -138,7 +138,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        Log.d(Tags.ishaanTag, "Finishing App")
         finishAffinity()
     }
 }

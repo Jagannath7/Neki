@@ -2,24 +2,26 @@ package com.systemtron.neki.fragments
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.firebase.auth.FirebaseUser
+import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.systemtron.neki.R
+import com.systemtron.neki.adapter.CategoryAdapter
 import com.systemtron.neki.utils.Constants
 import com.systemtron.neki.utils.Tags
-import kotlinx.android.synthetic.main.fragment_donate.*
 import kotlinx.android.synthetic.main.fragment_donate.view.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class DonateFragment : Fragment() {
 
@@ -33,7 +35,7 @@ class DonateFragment : Fragment() {
 
     private var name: String = ""
 
-    val arrayOfCategory = arrayListOf(
+    private val arrayOfCategory = arrayListOf(
         "Clothing",
         "Electronic Gadgets",
         "Essentials",
@@ -47,6 +49,7 @@ class DonateFragment : Fragment() {
         "Toys"
     )
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,13 +64,34 @@ class DonateFragment : Fragment() {
         val welcomeInt = sharedPreferences?.getInt(Constants.sharedPreferencesWelcome, -1)
         Log.d(Tags.ishaanTag, "Welcome Int: $welcomeInt")
         getNameFromFirestore()
+
+        Log.d(Tags.ishaanTag, "name from getName: $name")
         Handler().postDelayed({
             if (welcomeInt == 0) {
                 inflatedView.tvWelcomeOrHello.text = "Hello, $name!"
             } else if (welcomeInt == 1) {
                 inflatedView.tvWelcomeOrHello.text = "Welcome Back, $name!"
             }
-        }, 1000)
+        }, 2000)
+
+        val colorArray = arrayOf(
+            Color.argb(255, 244, 67, 45),
+            Color.argb(255, 63, 81, 181),
+            Color.argb(255, 33, 150, 243),
+            Color.argb(255, 156, 39, 176),
+            Color.argb(255, 76, 175, 80),
+            Color.argb(255, 255, 193, 7),
+            Color.argb(255, 121, 85, 72),
+            Color.argb(255, 255, 152, 0),
+            Color.argb(255, 139, 195, 74),
+            Color.argb(255, 0, 188, 212),
+            Color.argb(255, 233, 67, 45),
+        )
+        inflatedView.rvCategories.apply {
+            layoutManager =
+                GridLayoutManager(requireContext(), 2, LinearLayoutManager.HORIZONTAL, false)
+            adapter = CategoryAdapter(arrayOfCategory, colorArray, requireContext())
+        }
 
         return inflatedView
     }
