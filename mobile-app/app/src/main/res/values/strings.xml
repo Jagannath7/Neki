@@ -29,4 +29,7 @@
     <string name="showing_ngos_who_deal_with_clothing">Showing NGOs who deal with Clothing</string>
     <string name="contact_information">Contact Information</string>
     <string name="phone">Phone No.</string>
+    <string name="please_fill_the_desciption_and_upload_pictures_of_the_items">Please Fill the Description and Upload Pictures of the Items.</string>
+    <string name="what_are_you_donating_n_enter_quantity_as_well_complete_description">What are you Donating? \n (Enter Quantity as well Complete Description)</string>
+    <string name="place_request">Place Request</string>
 </resources>

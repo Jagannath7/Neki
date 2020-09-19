@@ -9,6 +9,7 @@
     tools:context=".activities.DonationActivity">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvNGOInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="16dp"
@@ -264,6 +265,65 @@
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cvNGOInfo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/please_fill_the_desciption_and_upload_pictures_of_the_items"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvInfo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/what_are_you_donating_n_enter_quantity_as_well_complete_description"
+        android:textColor="@color/colorText"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etDesc"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_below="@id/tvDescription"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:textColorHint="@color/colorText"
+        app:boxStrokeColor="@color/colorBar"
+        app:hintTextColor="@color/colorBar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:textColor="@color/colorText"
+            android:textColorHighlight="@color/colorText" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etDesc"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/colorButton"
+        android:enabled="false"
+        android:text="@string/place_request"
+        android:textColor="@android:color/black" />
 </RelativeLayout>
