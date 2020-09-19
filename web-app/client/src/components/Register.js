@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,7 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { db, auth } from '../config/fire';
+import { db, auth } from "../config/fire";
 
 function Copyright() {
   return (
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Register() {
   const classes = useStyles();
-
+  const uploadInputRef = useRef(null);
   const initialFormData = {
     name: "",
     tagline: "",
@@ -59,6 +59,7 @@ export default function Register() {
     city: "",
     state: "",
     landmark: "",
+    iconimg: null,
     iconurl: "",
     password: "",
   };
@@ -76,27 +77,29 @@ export default function Register() {
 
   const handleForm = (e) => {
     e.preventDefault();
-    var docid=formData.email;
-    db.collection("ngos").doc(docid).set({
-      email: formData.email,
-      city: formData.city,
-      landmark: formData.landmark,
-      phoneNumber:formData.phone,
-      state: formData.state,
-      name: formData.name,
-      tagline: formData.tagline,
-      street: formData.street,
-      iconurl: formData.iconurl,
-      password: formData.password,
-   })
-   .then(function(docRef) {
-      console.log("Document written");
-   })
-   .catch(function(error) {
-      console.error("Error adding document: ", error);
-   });
+    console.log(formData);
+    var docid = formData.email;
+    db.collection("ngos")
+      .doc(docid)
+      .set({
+        email: formData.email,
+        city: formData.city,
+        landmark: formData.landmark,
+        phoneNumber: formData.phone,
+        state: formData.state,
+        name: formData.name,
+        tagline: formData.tagline,
+        street: formData.street,
+        iconurl: formData.iconurl,
+        password: formData.password,
+      })
+      .then(function (docRef) {
+        console.log("Document written");
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
   };
-
 
   return (
     <Container component="main" maxWidth="xs">
@@ -220,19 +223,6 @@ export default function Register() {
                 variant="outlined"
                 required
                 fullWidth
-                id="url"
-                label="Icon Url"
-                name="url"
-                autoComplete="url"
-                onChange={handleChange}
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
                 name="password"
                 label="Password"
                 type="password"
@@ -240,6 +230,25 @@ export default function Register() {
                 autoComplete="current-password"
                 onChange={handleChange}
               />
+            </Grid>
+
+            <Grid item xs={12}>
+              <input
+                ref={uploadInputRef}
+                type="file"
+                name="iconimg"
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={handleChange}
+              />
+              <Button
+                onClick={() =>
+                  uploadInputRef.current && uploadInputRef.current.click()
+                }
+                variant="contained"
+              >
+                Upload
+              </Button>
             </Grid>
           </Grid>
           <Button
