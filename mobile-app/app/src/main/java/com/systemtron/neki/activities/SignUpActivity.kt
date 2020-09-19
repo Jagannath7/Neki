@@ -1,5 +1,6 @@
 package com.systemtron.neki.activities
 
+import android.content.Context
 import android.content.Intent
 import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.systemtron.neki.R
 import com.systemtron.neki.modelClass.User
+import com.systemtron.neki.utils.Constants
 import com.systemtron.neki.utils.Tags
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.coroutines.GlobalScope
@@ -24,6 +26,14 @@ class SignUpActivity : AppCompatActivity() {
 
     private val db by lazy {
         Firebase.firestore
+    }
+
+    private val sharedPreferences by lazy {
+        getSharedPreferences(Constants.welcomeTagSS, Context.MODE_PRIVATE)
+    }
+
+    private val editor by lazy {
+        sharedPreferences.edit()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +59,7 @@ class SignUpActivity : AppCompatActivity() {
                 pincode
             )
 
-            Log.d(Tags.ishaanTag, "User class formed: $user")
+            Log.d(Tags.ishaanTag, "User class formed: ${user.toString()}")
 
             GlobalScope.launch {
                 addToFireStore(user)
@@ -64,6 +74,9 @@ class SignUpActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 Log.d(Tags.ishaanTag, "Added to user db")
                 Log.d(Tags.ishaanTag, "Sign up -> Home")
+
+                editor.putInt(Constants.sharedPreferencesWelcome, 0)
+                editor.apply()
 
                 Handler().postDelayed({
                     val homeIntent = Intent(this, HomeActivity::class.java)

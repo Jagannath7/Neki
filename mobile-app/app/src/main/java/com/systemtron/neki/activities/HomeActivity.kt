@@ -44,7 +44,7 @@ class HomeActivity : AppCompatActivity() {
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.menuSearch -> {
-                    Log.d(Tags.ishaanTag, "Going to Menu Fragment")
+                    Log.d(Tags.ishaanTag, "Going to Search Fragment")
                     supportFragmentManager.beginTransaction()
                         .addToBackStack(null)
                         .replace(R.id.container, SearchFragment())

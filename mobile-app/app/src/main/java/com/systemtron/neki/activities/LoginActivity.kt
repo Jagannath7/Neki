@@ -1,5 +1,6 @@
 package com.systemtron.neki.activities
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.systemtron.neki.R
+import com.systemtron.neki.utils.Constants
 import com.systemtron.neki.utils.Tags
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -26,11 +28,21 @@ class LoginActivity : AppCompatActivity() {
         auth.currentUser
     }
 
+    private val sharedPreferences by lazy {
+        getSharedPreferences(Constants.welcomeTagSS, Context.MODE_PRIVATE)
+    }
+
+    private val editor by lazy {
+        sharedPreferences.edit()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         if (currentUser != null) {
+            editor.putInt(Constants.sharedPreferencesWelcome, 1)
+            editor.apply()
             val signInIntent = Intent(this@LoginActivity, HomeActivity::class.java)
             startActivity(signInIntent)
         }
@@ -80,6 +92,9 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Sign In Successful", Toast.LENGTH_SHORT).show()
                 Log.d(Tags.ishaanTag, "Sign in Successful")
                 Log.d(Tags.ishaanTag, "Login -> Home")
+
+                editor.putInt(Constants.sharedPreferencesWelcome, 1)
+                editor.apply()
 
                 Handler().postDelayed({
                     val signInIntent = Intent(this@LoginActivity, HomeActivity::class.java)
