@@ -22,7 +22,9 @@ The various features in ***Neki*** App.
 ## Technology Stack
  - Kotlin
  - XML
- - Firebase Authentication
+ - Android
+ - JavaScript
  - React
+ - Firebase
 
  Built with :heart: by [@IronClad1607](https://github.com/IronClad1607), [@sidhi-sid](https://github.com/sidhi-sid), [@Jagannath7](https://github.com/Jagannath7), [@surajsly](https://github.com/surajsly), [@vibhuvj27](https://github.com/vibhuvj27)
