@@ -33,6 +33,20 @@ class DonateFragment : Fragment() {
 
     private var name: String = ""
 
+    val arrayOfCategory = arrayListOf(
+        "Clothing",
+        "Electronic Gadgets",
+        "Essentials",
+        "Food",
+        "Furniture",
+        "Machinery",
+        "Medical Equipments",
+        "Monetary Funds",
+        "Sports Equipments",
+        "Stationary",
+        "Toys"
+    )
+
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
