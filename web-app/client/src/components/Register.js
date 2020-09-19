@@ -20,7 +20,8 @@ import Select from "@material-ui/core/Select";
 import Chip from "@material-ui/core/Chip";
 
 import Container from "@material-ui/core/Container";
-import { db, auth } from "../config/fire";
+import { db, auth, storage } from "../config/fire";
+import firebase from '../config/fire';
 
 /*Coparite funtion*/
 
@@ -197,6 +198,14 @@ export default function Register() {
       .catch(function (error) {
         console.error("Error adding document: ", error);
       });
+      let bucketName='images';
+      let file = returnedTarget.iconimg;
+      let storageRef = firebase.storage().ref(`${bucketName}/${returnedTarget.iconimg}`);
+      let uploadTask=storageRef.put(file)
+      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,()=>{
+        let downloadURL=uploadTask.snapshot.downloadURL;
+      })
+      
   };
 
   return (
