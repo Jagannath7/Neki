@@ -19,6 +19,7 @@
     <string name="search">Search</string>
     <string name="donate">Donate</string>
     <string name="profile">Profile</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="various_categories">Various Categories</string>
+    <string name="few_suggestions">Few Suggestions</string>
+    <string name="ngo_icon">NGO Icon</string>
 </resources>
