@@ -90,14 +90,14 @@ const MenuProps = {
 const names = [
   "Food",
   "Clothing",
-  "Electronics",
-  "Education",
-  "Essential",
+  "Electronic Gadgets",
+  "Monetary Funds",
+  "Essentials",
   "Furniture",
-  "Machinary",
-  "Medical Equipment",
-  "Sports",
-  "Statinory",
+  "Machinery",
+  "Medical Equipments",
+  "Sports Equipments",
+  "Stationary",
   "Toys",
 ];
 
@@ -129,7 +129,7 @@ export default function Register() {
     state: " ",
     landmark: " ",
     iconimg: null,
-    iconurl: " ",
+    iconurl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fa%2Fad%2FPlaceholder_no_text.svg%2F768px-Placeholder_no_text.svg.png&f=1&nofb=1 ",
     password: " ",
     pincode: " ",
   };
@@ -178,7 +178,17 @@ export default function Register() {
     /*
     please change the following code be replacing formData by  returnedTarget 
     */
-   
+   /*let bucketName='images';
+   let filename = returnedTarget.iconimg.substring(returnedTarget.iconimg.lastIndexOf("/") + 1);
+   let file=this.state.files[0];
+   let storageRef=firebase.storage().ref(`${bucketName}/${filename}`)
+   let uploadTask = storageRef.put('images/' + file).put(file);
+   uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,()=>{
+    uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+      console.log('File available at', downloadURL);
+      returnedTarget.iconurl=downloadURL;
+    });
+   })*/
     var docid = formData.email;
     db.collection("ngos")
       .doc(docid)
@@ -188,7 +198,7 @@ export default function Register() {
         landmark: returnedTarget.landmark,
         phoneNumber: returnedTarget.phone,
         state: returnedTarget.state,
-        fullName: returnedTarget.name,
+        name: returnedTarget.name,
         tagline: returnedTarget.tagline,
         streetAddress: returnedTarget.street,
         iconUrl: returnedTarget.iconurl,
