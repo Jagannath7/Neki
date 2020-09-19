@@ -22,7 +22,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        app:itemRippleColor="@color/colorText"
         android:layout_alignParentBottom="true"
+        android:background="@color/colorBackground"
+        android:backgroundTint="@color/colorBackground"
+        app:itemTextColor="@color/colorBar"
         app:menu="@menu/bottom_navigation_menu" />
 
 </RelativeLayout>
