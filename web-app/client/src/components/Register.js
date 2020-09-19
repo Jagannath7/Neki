@@ -247,7 +247,7 @@ export default function Register() {
                 }
                 variant="contained"
               >
-                Upload
+                Upload Profile Picture
               </Button>
             </Grid>
           </Grid>
