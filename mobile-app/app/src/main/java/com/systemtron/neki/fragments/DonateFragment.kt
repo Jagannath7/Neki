@@ -3,14 +3,12 @@ package com.systemtron.neki.fragments
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,8 +17,11 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.systemtron.neki.R
 import com.systemtron.neki.adapter.CategoryAdapter
+import com.systemtron.neki.adapter.NGOAdapter
+import com.systemtron.neki.modelClass.NGO
 import com.systemtron.neki.utils.Constants
 import com.systemtron.neki.utils.Tags
+import kotlinx.android.synthetic.main.fragment_donate.*
 import kotlinx.android.synthetic.main.fragment_donate.view.*
 
 class DonateFragment : Fragment() {
@@ -34,6 +35,8 @@ class DonateFragment : Fragment() {
     }
 
     private var name: String = ""
+
+    private val listOfNGOs = ArrayList<NGO>()
 
     private val arrayOfCategory = arrayListOf(
         "Clothing",
@@ -57,27 +60,12 @@ class DonateFragment : Fragment() {
         sharedPreferences.edit()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val inflatedView = inflater.inflate(R.layout.fragment_donate, container, false)
-
-        val welcomeInt = sharedPreferences?.getInt(Constants.sharedPreferencesWelcome, -1)
-        Log.d(Tags.ishaanTag, "Welcome Int: $welcomeInt")
-        getNameFromFirestore()
-
-        Log.d(Tags.ishaanTag, "name from getName: $name")
-        Handler().postDelayed({
-            if (welcomeInt == 0) {
-                inflatedView.tvWelcomeOrHello.text = "Hello, $name!"
-            } else if (welcomeInt == 1) {
-                inflatedView.tvWelcomeOrHello.text = "Welcome Back, $name!"
-            }
-        }, 2000)
-
         val colorArray = arrayOf(
             Color.argb(255, 244, 67, 45),
             Color.argb(255, 63, 81, 181),
@@ -97,10 +85,36 @@ class DonateFragment : Fragment() {
             adapter = CategoryAdapter(arrayOfCategory, colorArray, requireContext())
         }
 
+        val welcomeInt = sharedPreferences?.getInt(Constants.sharedPreferencesWelcome, -1)
+        Log.d(Tags.ishaanTag, "Welcome Int: $welcomeInt")
+        getNameFromFirestore(welcomeInt)
+
+        addNGO()
         return inflatedView
     }
 
-    private fun getNameFromFirestore() {
+    private fun addNGO() {
+        db.collection("ngos")
+            .limit(10)
+            .get()
+            .addOnSuccessListener {
+                for (value in it) {
+                    val ngo = value.toObject(NGO::class.java)
+                    ngo.emailId = value.id
+                    ngo.listCategory = ngo.categories.split(",")
+                    Log.d(Tags.ishaanTag, "${ngo.emailId} ${ngo.listCategory}")
+                    listOfNGOs.add(ngo)
+                }
+                rvSuggestions.apply {
+                    layoutManager =
+                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                    adapter = NGOAdapter(listOfNGOs, requireContext())
+                }
+            }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun getNameFromFirestore(welcomeInt: Int?) {
         db.collection("users")
             .document(currentUser!!.email.toString())
             .get()
@@ -113,9 +127,14 @@ class DonateFragment : Fragment() {
                     val nameList = receivedName.split(" ")
                     Log.d(Tags.ishaanTag, "${nameList[0]} $receivedName")
                     name = nameList[0]
+                    if (welcomeInt == 0) {
+                        tvWelcomeOrHello.text = "Hello, $name!"
+                    } else if (welcomeInt == 1) {
+                        tvWelcomeOrHello.text = "Welcome Back, $name!"
+                    }
                 }
             }.addOnFailureListener {
-
+                Log.d(Tags.ishaanTag, "Name Failed, ${it.toString()}")
             }
     }
 }

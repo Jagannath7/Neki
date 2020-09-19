@@ -1,12 +1,16 @@
 package com.systemtron.neki.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.systemtron.neki.R
+import com.systemtron.neki.activities.ListOfNgoActivity
+import com.systemtron.neki.utils.Constants
 import kotlinx.android.synthetic.main.cv_donate_category.view.*
 
 class CategoryAdapter(
@@ -22,6 +26,12 @@ class CategoryAdapter(
                 tvCatName.text = name
                 cvCat.radius = 15.toDp(context).toFloat()
                 cvCat.setCardBackgroundColor(color)
+
+                setOnClickListener {
+                    val furtherIntent = Intent(context, ListOfNgoActivity::class.java)
+                    furtherIntent.putExtra(Constants.keyCatName, name)
+                    startActivity(context, furtherIntent, null)
+                }
             }
         }
 

@@ -131,6 +131,7 @@ export default function Register() {
     iconimg: null,
     iconurl: " ",
     password: " ",
+    pincode: " ",
   };
 
   /*For whole form exacpt category*/
@@ -308,6 +309,19 @@ export default function Register() {
                 label="state"
                 name="state"
                 autoComplete="state"
+                onChange={handleChange}
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="pincode"
+                label="pincode"
+                name="pincode"
+                autoComplete="pincode"
                 onChange={handleChange}
               />
             </Grid>
