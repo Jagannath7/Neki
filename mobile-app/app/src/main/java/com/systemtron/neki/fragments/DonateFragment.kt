@@ -49,6 +49,14 @@ class DonateFragment : Fragment() {
         "Toys"
     )
 
+    private val sharedPreferences by lazy {
+        requireContext().getSharedPreferences(Constants.welcomeTagSS, Context.MODE_PRIVATE)
+    }
+
+    private val editor by lazy {
+        sharedPreferences.edit()
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -56,10 +64,6 @@ class DonateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val inflatedView = inflater.inflate(R.layout.fragment_donate, container, false)
-        val sharedPreferences = requireContext().getSharedPreferences(
-            Constants.welcomeTagSS,
-            Context.MODE_PRIVATE
-        )
 
         val welcomeInt = sharedPreferences?.getInt(Constants.sharedPreferencesWelcome, -1)
         Log.d(Tags.ishaanTag, "Welcome Int: $welcomeInt")
@@ -103,6 +107,9 @@ class DonateFragment : Fragment() {
             .addOnSuccessListener {
                 if (it.exists()) {
                     val receivedName = it.getString(Constants.keyName).toString()
+                    val url = it.getString(Constants.keyPP).toString()
+                    editor.putString(Constants.userName, receivedName)
+                    editor.putString(Constants.userPP, url)
                     val nameList = receivedName.split(" ")
                     Log.d(Tags.ishaanTag, "${nameList[0]} $receivedName")
                     name = nameList[0]

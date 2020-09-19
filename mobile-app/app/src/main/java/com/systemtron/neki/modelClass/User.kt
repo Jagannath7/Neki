@@ -8,6 +8,7 @@ class User {
     var state: String = ""
     var city: String = ""
     var pincode: String = ""
+    var urlPP: String = ""
 
     constructor() {
     }
@@ -19,7 +20,8 @@ class User {
         landmark: String,
         state: String,
         city: String,
-        pincode: String
+        pincode: String,
+        url: String
     ) {
         this.fullName = fullName
         this.phoneNumber = phoneNumber
@@ -28,5 +30,6 @@ class User {
         this.state = state
         this.city = city
         this.pincode = pincode
+        this.urlPP = url
     }
 }

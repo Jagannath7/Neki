@@ -31,12 +31,40 @@
         android:textColor="@color/colorText"
         android:textSize="20sp" />
 
+    <LinearLayout
+        android:id="@+id/llPicture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvPersonalDetails"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnUpload"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="0.5"
+            android:text="@string/upload_profile_picture" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_weight="0.5"
+            android:gravity="center|start"
+            android:textColor="@color/colorText"
+            android:textSize="15sp"
+            tools:text="Path to file" />
+
+    </LinearLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etName"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvPersonalDetails"
+        android:layout_below="@id/llPicture"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="15dp"
@@ -221,8 +249,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/colorButton"
+        android:enabled="false"
         android:text="@string/submit"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:visibility="gone" />
 
 
 </RelativeLayout>
