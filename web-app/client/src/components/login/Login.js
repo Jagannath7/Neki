@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -19,49 +18,12 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
-        Neki
+        Your Website
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
     </Typography>
   );
-=======
-import React, { Component } from "react";
-import ReactDOM from 'react-dom';
-import fire from './config/fire';
-import LandingPage from '../LandingPage';
-import props from 'react-dom';
-import Structure from './Structure';
-
-class Login extends Component{
-  constructor(){
-    super(props);
-    this.state={
-      user:{},
-    }
-  }
-  componentDidMount(){
-    this.authListener();
-  }
-   authListener() {
-     fire.auth().onAuthStateChanged((user)=>{
-       //console.log(user);
-       if(user){
-         this.setState({user});
-       }else{
-         this.setState({user:null});
-       }
-     });
-   }
-   render(){
-    return(
-      <div className="Login">
-        {this.state.user ? (<LandingPage/>):(<Login/>)}
-      </div>
-    );
-   }
-   
->>>>>>> 47f12baa56fc88d70eaa4bc4cf629a12d12fed46
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -84,12 +46,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login() {
+export default function SignIn() {
   const classes = useStyles();
-
-  const handler = () => {
-    console.log("hi");
-  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -124,16 +82,31 @@ export default function Login() {
             id="password"
             autoComplete="current-password"
           />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={handler}
           >
             Sign In
           </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="#" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
         </form>
       </div>
       <Box mt={8}>
