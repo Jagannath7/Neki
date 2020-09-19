@@ -3,22 +3,23 @@ package com.systemtron.neki.fragments
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.systemtron.neki.R
 import com.systemtron.neki.adapter.CategoryAdapter
+import com.systemtron.neki.adapter.NGOAdapter
+import com.systemtron.neki.modelClass.NGO
 import com.systemtron.neki.utils.Constants
 import com.systemtron.neki.utils.Tags
 import kotlinx.android.synthetic.main.fragment_donate.view.*
@@ -34,6 +35,10 @@ class DonateFragment : Fragment() {
     }
 
     private var name: String = ""
+
+    private val listOfNGOs = ArrayList<NGO>()
+
+    private lateinit var noteListener: ListenerRegistration
 
     private val arrayOfCategory = arrayListOf(
         "Clothing",
@@ -57,27 +62,12 @@ class DonateFragment : Fragment() {
         sharedPreferences.edit()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val inflatedView = inflater.inflate(R.layout.fragment_donate, container, false)
-
-        val welcomeInt = sharedPreferences?.getInt(Constants.sharedPreferencesWelcome, -1)
-        Log.d(Tags.ishaanTag, "Welcome Int: $welcomeInt")
-        getNameFromFirestore()
-
-        Log.d(Tags.ishaanTag, "name from getName: $name")
-        Handler().postDelayed({
-            if (welcomeInt == 0) {
-                inflatedView.tvWelcomeOrHello.text = "Hello, $name!"
-            } else if (welcomeInt == 1) {
-                inflatedView.tvWelcomeOrHello.text = "Welcome Back, $name!"
-            }
-        }, 2000)
-
         val colorArray = arrayOf(
             Color.argb(255, 244, 67, 45),
             Color.argb(255, 63, 81, 181),
@@ -97,7 +87,45 @@ class DonateFragment : Fragment() {
             adapter = CategoryAdapter(arrayOfCategory, colorArray, requireContext())
         }
 
+        val welcomeInt = sharedPreferences?.getInt(Constants.sharedPreferencesWelcome, -1)
+        Log.d(Tags.ishaanTag, "Welcome Int: $welcomeInt")
+        getNameFromFirestore()
+
+        Handler().postDelayed({
+            Log.d(Tags.ishaanTag, "name from getName: $name")
+            if (welcomeInt == 0) {
+                inflatedView.tvWelcomeOrHello.text = "Hello, $name!"
+            } else if (welcomeInt == 1) {
+                inflatedView.tvWelcomeOrHello.text = "Welcome Back, $name!"
+            }
+        }, 2000)
+
+        addNGO()
+        Handler().postDelayed({
+            Log.d(Tags.ishaanTag, "$listOfNGOs")
+            inflatedView.rvSuggestions.apply {
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                adapter = NGOAdapter(listOfNGOs, requireContext())
+            }
+        }, 3000)
+
         return inflatedView
+    }
+
+    private fun addNGO() {
+        db.collection("ngos")
+            .limit(10)
+            .get()
+            .addOnSuccessListener {
+                for (value in it) {
+                    val ngo = value.toObject(NGO::class.java)
+                    ngo.emailId = value.id
+                    ngo.listCategory = ngo.categories.split(",")
+                    Log.d(Tags.ishaanTag, "${ngo.emailId} ${ngo.listCategory}")
+                    listOfNGOs.add(ngo)
+                }
+            }
     }
 
     private fun getNameFromFirestore() {
@@ -115,7 +143,7 @@ class DonateFragment : Fragment() {
                     name = nameList[0]
                 }
             }.addOnFailureListener {
-
+                Log.d(Tags.ishaanTag, "Name Failed, ${it.toString()}")
             }
     }
 }
