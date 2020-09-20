@@ -18,6 +18,65 @@ The various features in ***Neki*** App.
 - **Searching of Nearby NGOs** 
 - **History of User's Donation**
 
+## Screenshots
+
+<table align="center">
+	<tr>
+		<td>
+			Splash Screen
+		</td>
+		<td>
+			Login Screen
+		</td>
+		<td>
+			First User Detail
+		</td>
+		<td> Edit Details Of User</td>
+		
+	</tr>
+	<tr>
+		<td>
+			<img src="/images/mobileapp1.jpg" height="390" width="180">
+		</td>
+		<td><img src="/images/mobileapp7.jpg" height="390" width="180">
+		</td>
+		<td><img src="/images/mobileapp8.jpg" height="390" width="180">
+		</td>
+		<td><img src="/images/mobileapp4.jpg" height="390" width="180">
+		</td>
+		
+	</tr>
+	<tr>
+		
+		<td>
+			List of NGOs
+		</td>
+		<td>
+			Search of Particular NGO
+		</td>
+		<td>
+			Donation Screen
+		</td>
+		<td>
+			Donated!
+		</td>
+		
+	</tr>
+	<tr>
+		
+		<td>
+			<img src="/images/mobileapp3.jpg" height="390" width="180">
+		</td>
+		<td><img src="/images/mobileapp5.jpg" height="390" width="180">
+		</td>
+		<td><img src="/images/mobileapp6.jpg" height="390" width="180">
+		</td>
+		<td><img src="/images/mobileapp2.jpg" height="390" width="180">
+		</td>
+		
+	</tr>
+</table>
+
 
 
 ## Technology Stack
