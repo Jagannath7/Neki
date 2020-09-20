@@ -83,6 +83,18 @@ export default function NewOrders() {
       })
     );
   };
+  const handleNoClick = (props) => {
+    console.log(state, props);
+
+    // myArray = myArray.filter(function (obj) {
+    //   return obj.id !== id;
+    // });
+    setstate(
+      state.filter(function (obj) {
+        return obj.id !== props;
+      })
+    );
+  };
   return (
     <React.Fragment>
       <Title>New Orders</Title>
@@ -111,7 +123,7 @@ export default function NewOrders() {
                   aria-label="small secondary outlined button group"
                 >
                   <Button onClick={() => handleYesClick(row.id)}>YES</Button>
-                  <Button>No</Button>
+                  <Button onClick={() => handleNoClick(row.id)}>NO</Button>
                 </ButtonGroup>
               </TableCell>
             </TableRow>
