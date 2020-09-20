@@ -23,6 +23,8 @@ import Chart from "./Chart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
 import NewOrders from "./NewOrders";
+import { requirePropFactory } from "@material-ui/core";
+
 
 function Copyright() {
   return (

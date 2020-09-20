@@ -7,7 +7,8 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Title from "./Title";
-
+import { db, auth, storage } from "../../config/fire";
+import firebase from '../../config/fire';
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 
@@ -58,6 +59,7 @@ const rows = [
   ),
 ];
 
+
 // myArray = myArray.filter(function( obj ) {
 //   return obj.id !== id;
 // });
@@ -70,9 +72,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewOrders() {
   const classes = useStyles();
+  
   const [state, setstate] = useState(rows);
   const handleYesClick = (props) => {
     console.log(state, props);
+    
+    db.collection("transactions").where("toEmail", "==",props.id)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
+  
 
     // myArray = myArray.filter(function (obj) {
     //   return obj.id !== id;
@@ -94,6 +110,7 @@ export default function NewOrders() {
         return obj.id !== props;
       })
     );
+   
   };
   return (
     <React.Fragment>

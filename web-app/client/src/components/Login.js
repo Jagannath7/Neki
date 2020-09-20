@@ -16,7 +16,6 @@ import firebase from '../config/fire';
 import { auth } from "firebase";
 
 
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -69,14 +68,28 @@ export default function SignIn() {
     });
   };
 
+ 
+  
   const handleForm = (e) => {
     e.preventDefault();
     console.log(formData);
+    
     firebase.auth().createUserWithEmailAndPassword(formData.email,formData.password)
     .then(res=>{if(res.user){
       auth.setLoggedIn(true);
+       
     } }).catch(err=>{console.log(err)})
   };
+  
+  /*firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // ...
+});*/
+  
+  
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -130,3 +143,5 @@ export default function SignIn() {
     </Container>
   );
 }
+
+
