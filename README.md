@@ -71,6 +71,27 @@ The various features in ***Neki*** App.
 	</tr>
 </table>
 
+- Web App Screenshots
+<table align="center">
+	<tr>
+		<td>
+			Home Page
+		</td>
+		<td>
+			Registration Screen
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="/images/WhatsApp Image 2020-09-20 at 15.32.25.jpeg" height="390" width="180">
+		</td>
+		<td><img src="/images/WhatsApp Image 2020-09-20 at 15.32.26.jpeg" height="390" width="180">
+		</td>
+		
+	</tr>
+</table>
+
+
 
 
 ## Technology Stack
