@@ -121,10 +121,11 @@ class DonateFragment : Fragment() {
                 if (it.exists()) {
                     val receivedName = it.getString(Constants.keyName).toString()
                     val url = it.getString(Constants.keyPP).toString()
+                    Log.d(Tags.ishaanTag, "$receivedName $url")
                     editor.putString(Constants.userName, receivedName)
                     editor.putString(Constants.userPP, url)
+                    editor.commit()
                     val nameList = receivedName.split(" ")
-                    Log.d(Tags.ishaanTag, "${nameList[0]} $receivedName")
                     name = nameList[0]
                     if (welcomeInt == 0) {
                         inflatedView.tvWelcomeOrHello.text = "Hello, $name!"

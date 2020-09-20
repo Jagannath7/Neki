@@ -54,15 +54,16 @@
         android:textSize="18sp" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTransactions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/btnSignOut"
         android:layout_below="@id/tvHistory"
         android:layout_alignParentStart="true"
-        tools:listitem="@layout/cv_history"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        tools:listitem="@layout/cv_history" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSignOut"
