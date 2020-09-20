@@ -73,14 +73,19 @@ const useStyles = makeStyles((theme) => ({
 export default function NewOrders(props) {
   /*This props.id is email adress*/
   console.log(props.id);
+  
   db.collection("transactions").where("toEmail", "==",props.id).where("status","==","NIL")
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
             console.log(doc.id, " => ", doc.data());
+            
+              a.push(doc.data());
+            
             let fulldata=doc.data();
             console.log(fulldata);
+            
         });
     })
     .catch(function(error) {
@@ -93,7 +98,6 @@ export default function NewOrders(props) {
     console.log(state, props);
     
     
-  
 
     // myArray = myArray.filter(function (obj) {
     //   return obj.id !== id;
