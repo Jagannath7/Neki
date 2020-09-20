@@ -1,5 +1,6 @@
 # Neki
 
+<img src = "/images/logo.png" height = "200" width="200" align="left" hspace="10" vspace="10"> 
 
 This app contributes to the mission of NGOs and other similar organizations to achieve “Partnership For The Goals” including the other five SDGs. It is a service-based application that fulfils the needs of the less fortunate people by providing them with donations from people who are in a position to help. It also tries to contribute towards the eradication of poverty and inequality. Providing services to improve health and hygiene is another added attribute alongside contribution to economic growth while meeting sustainable development goals.<br>
 
