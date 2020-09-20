@@ -14,7 +14,7 @@ import com.systemtron.neki.modelClass.NGO
 import com.systemtron.neki.utils.Constants
 import kotlinx.android.synthetic.main.cv_ngos.view.*
 
-class NGOAdapter(private val listOfNGOs: ArrayList<NGO>, private val context: Context) :
+class NGOAdapter(private var listOfNGOs: ArrayList<NGO>, private val context: Context) :
     RecyclerView.Adapter<NGOAdapter.NGOViewHolder>() {
 
     class NGOViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -51,4 +51,9 @@ class NGOAdapter(private val listOfNGOs: ArrayList<NGO>, private val context: Co
     }
 
     override fun getItemCount(): Int = listOfNGOs.size
+
+    fun filterList(filtered: ArrayList<NGO>) {
+        listOfNGOs = filtered
+        notifyDataSetChanged()
+    }
 }
