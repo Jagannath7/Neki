@@ -41,7 +41,11 @@ export default function Navbar(props) {
       <ElevationScroll {...props}>
         <AppBar className="appBar" position="static">
           <Toolbar>
-            <Typography variant="h6">Neki</Typography>
+            <Link href="/">
+              <Typography variant="h6" color="textPrimary" key="name">
+                Neki
+              </Typography>
+            </Link>
             <div className="absolute">
               <Link href="/login">
                 <Button type="button">{props.text}</Button>
