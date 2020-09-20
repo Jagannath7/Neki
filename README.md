@@ -12,9 +12,6 @@ This app contributes to the mission of NGOs and other similar organizations to a
 The various features in ***Neki*** App.
 
 - **Donation of Products**
-
-#### To be implemented:
-
 - **Searching of Nearby NGOs** 
 - **History of User's Donation**
 
@@ -31,8 +28,8 @@ The various features in ***Neki*** App.
 		<td>
 			First User Detail
 		</td>
-		<td> Edit Details Of User</td>
-		
+		<td> Edit Details Of User
+		</td>
 	</tr>
 	<tr>
 		<td>
@@ -44,10 +41,8 @@ The various features in ***Neki*** App.
 		</td>
 		<td><img src="/images/mobileapp4.jpg" height="390" width="180">
 		</td>
-		
 	</tr>
 	<tr>
-		
 		<td>
 			List of NGOs
 		</td>
@@ -60,10 +55,8 @@ The various features in ***Neki*** App.
 		<td>
 			Donated!
 		</td>
-		
 	</tr>
 	<tr>
-		
 		<td>
 			<img src="/images/mobileapp3.jpg" height="390" width="180">
 		</td>
@@ -73,18 +66,23 @@ The various features in ***Neki*** App.
 		</td>
 		<td><img src="/images/mobileapp2.jpg" height="390" width="180">
 		</td>
-		
 	</tr>
 </table>
 
 
 
 ## Technology Stack
- - Kotlin
- - XML
- - Android
- - JavaScript
- - React
- - Firebase
+ 	- Android
+ 	- Kotlin
+ 	- XML
+ 	- React
+ 	- JavaScript
+ 	- JSX
+ 	- Firebase Authenication
+ 	- Firebase Cloud Storage
+ 	- Firebase Cloud Firestore
+ 	- Firebase Analytics
+ 	- Material Design
+
 
  Built with :heart: by [@IronClad1607](https://github.com/IronClad1607), [@sidhi-sid](https://github.com/sidhi-sid), [@Jagannath7](https://github.com/Jagannath7), [@surajsly](https://github.com/surajsly), [@vibhuvj27](https://github.com/vibhuvj27)
