@@ -83,9 +83,9 @@ The various features in ***Neki*** App.
 	</tr>
 	<tr>
 		<td>
-			<img src="/images/WhatsApp Image 2020-09-20 at 15.32.25.jpeg" height="390" width="180">
+			<img src="images/WhatsApp Image 2020-09-20 at 15.32.26.jpeg" height="390" width="180">
 		</td>
-		<td><img src="/images/WhatsApp Image 2020-09-20 at 15.32.26.jpeg" height="390" width="180">
+		<td><img src="/images/images/WhatsApp Image 2020-09-20 at 15.32.26.jpeg" height="390" width="180">
 		</td>
 		
 	</tr>
