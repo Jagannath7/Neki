@@ -11,7 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import firebase from "../config/fire";
 import { auth } from "firebase";
-
+import history from "../history";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -78,6 +78,7 @@ export default function SignIn() {
       .catch((err) => {
         console.log(err);
       });
+    history.push(`/dashboard/${formData.email}`);
   };
   return (
     <Container component="main" maxWidth="xs">

@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
@@ -140,7 +141,11 @@ export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
+  /*
+  id is email adrress from login
+  */
+  let { id } = useParams();
+  console.log(id);
   return (
     <div className={classes.root}>
       <CssBaseline />
