@@ -129,7 +129,7 @@ export default function Register() {
     state: " ",
     landmark: " ",
     iconimg: null,
-    iconurl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fa%2Fad%2FPlaceholder_no_text.svg%2F768px-Placeholder_no_text.svg.png&f=1&nofb=1 ",
+    iconurl: " https://wolper.com.au/wp-content/uploads/2017/10/image-placeholder.jpg",
     password: " ",
     pincode: " ",
   };

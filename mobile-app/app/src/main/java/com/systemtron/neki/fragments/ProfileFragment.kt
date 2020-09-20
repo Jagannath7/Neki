@@ -48,7 +48,6 @@ class ProfileFragment : Fragment() {
         val inflatedView = inflater.inflate(R.layout.fragment_profile, container, false)
         val name = sharedPreferences?.getString(Constants.userName, "")
         val url = sharedPreferences?.getString(Constants.userPP, "")
-
         Log.d(Tags.ishaanTag, "$name $url")
 
         addTransaction(inflatedView)
