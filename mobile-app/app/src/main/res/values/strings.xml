@@ -39,4 +39,5 @@
     <string name="date">Date:</string>
     <string name="what_you_have_donated">What You Have Donated?</string>
     <string name="list_is_empty_please_make_some_donation">List is Empty, Please make some donation!</string>
+    <string name="please_edit_your_information_accordingly">Please Edit Your Information Accordingly!</string>
 </resources>

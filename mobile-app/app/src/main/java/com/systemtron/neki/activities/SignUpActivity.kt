@@ -11,6 +11,7 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -50,7 +51,7 @@ class SignUpActivity : AppCompatActivity() {
         storage.reference.child("users")
     }
 
-    var url: String = ""
+    private var url: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,21 +72,25 @@ class SignUpActivity : AppCompatActivity() {
             val pincode = etPinCode.editText?.text.toString()
             val urlPP = url
 
-            val user = User(
-                fullName,
-                phoneNumber,
-                streetAddress,
-                landmark,
-                state,
-                city,
-                pincode,
-                urlPP
-            )
+            if (fullName.isEmpty() || phoneNumber.isEmpty() || streetAddress.isEmpty() || landmark.isEmpty() || city.isEmpty() || state.isEmpty() || pincode.isEmpty()) {
+                Toast.makeText(this, "Please Fill All the Details", Toast.LENGTH_LONG).show()
+            } else {
+                val user = User(
+                    fullName,
+                    phoneNumber,
+                    streetAddress,
+                    landmark,
+                    state,
+                    city,
+                    pincode,
+                    urlPP
+                )
 
-            Log.d(Tags.ishaanTag, "User class formed: ${user.toString()}")
+                Log.d(Tags.ishaanTag, "User class formed: ${user.toString()}")
 
-            GlobalScope.launch {
-                addToFireStore(user)
+                GlobalScope.launch {
+                    addToFireStore(user)
+                }
             }
         }
     }
@@ -133,10 +138,13 @@ class SignUpActivity : AppCompatActivity() {
         uploadTask.addOnSuccessListener {
             Log.d(Tags.ishaanTag, "Image Uploaded")
             imageRef.downloadUrl.addOnSuccessListener {
-                Log.d(Tags.ishaanTag,"URL: $it")
+                Log.d(Tags.ishaanTag, "URL: $it")
                 runOnUiThread {
                     url = it.toString()
                     btnSubmit.visibility = View.VISIBLE
+                    btnUpload.visibility = View.GONE
+                    ivPic.visibility = View.VISIBLE
+                    Glide.with(this).load(it).into(ivPic)
                     btnSubmit.isEnabled = true
                 }
             }
