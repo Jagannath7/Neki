@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -58,6 +58,10 @@ const rows = [
   ),
 ];
 
+// myArray = myArray.filter(function( obj ) {
+//   return obj.id !== id;
+// });
+
 const useStyles = makeStyles((theme) => ({
   seeMore: {
     marginTop: theme.spacing(3),
@@ -66,6 +70,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewOrders() {
   const classes = useStyles();
+  const [state, setstate] = useState(rows);
+  const handleYesClick = (props) => {
+    console.log(state, props);
+
+    // myArray = myArray.filter(function (obj) {
+    //   return obj.id !== id;
+    // });
+    setstate(
+      state.filter(function (obj) {
+        return obj.id !== props;
+      })
+    );
+  };
   return (
     <React.Fragment>
       <Title>New Orders</Title>
@@ -81,7 +98,7 @@ export default function NewOrders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {state.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.date}</TableCell>
               <TableCell>{row.name}</TableCell>
@@ -93,7 +110,7 @@ export default function NewOrders() {
                   size="small"
                   aria-label="small secondary outlined button group"
                 >
-                  <Button>YES</Button>
+                  <Button onClick={() => handleYesClick(row.id)}>YES</Button>
                   <Button>No</Button>
                 </ButtonGroup>
               </TableCell>

@@ -5,4 +5,6 @@
 .absolute {
   position: absolute;
   right: 150px;
+  color: white;
+  text-decoration-color: white;
 }

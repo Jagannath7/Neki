@@ -1,3 +1,49 @@
 .head {
   padding-top: 5%;
 }
+
+.logs {
+  background-color: #f99f9f;
+  box-shadow: 0 5px 0 #f9f;
+  color: white;
+  margin-left: 5em;
+
+  padding: 1em 3em;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.logs:hover {
+  background-color: #f99f9f;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.logs:active {
+  box-shadow: none;
+  top: 5px;
+}
+
+.regs {
+  background-color: #ff69b4;
+  box-shadow: 0 5px 0 #db7093;
+  color: white;
+  margin-left: 5em;
+
+  padding: 1em 3em;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.regs:hover {
+  background-color: #ff1493;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.regs:active {
+  box-shadow: none;
+  top: 5px;
+}
