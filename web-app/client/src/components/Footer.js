@@ -94,31 +94,24 @@ const tiers = [
 ];
 const footers = [
   {
-    title: "Company",
-    description: ["Team", "History", "Contact us", "Locations"],
-  },
-  {
-    title: "Features",
+    title: "Team",
     description: [
-      "Cool stuff",
-      "Random feature",
-      "Team feature",
-      "Developer stuff",
-      "Another one",
+      "Jagannath",
+      "Ishaan jain",
+      "Sidhi",
+      "Vibhuti Jain",
+      "Suraj Singh",
     ],
   },
   {
-    title: "Resources",
+    title: "Gituhub",
     description: [
-      "Resource",
-      "Resource name",
-      "Another resource",
-      "Final resource",
+      "Jagannath7",
+      "IronClad1607",
+      "sidhi-sid",
+      "vibhuvj27",
+      "surajsly",
     ],
-  },
-  {
-    title: "Legal",
-    description: ["Privacy policy", "Terms of use"],
   },
 ];
 
@@ -136,7 +129,11 @@ function Footer() {
             <ul>
               {footer.description.map((item) => (
                 <li key={item}>
-                  <Link href="#" variant="subtitle1" color="textSecondary">
+                  <Link
+                    href={`https://github.com/${item}`}
+                    variant="subtitle1"
+                    color="textSecondary"
+                  >
                     {item}
                   </Link>
                 </li>
@@ -145,9 +142,9 @@ function Footer() {
           </Grid>
         ))}
       </Grid>
-      <Box mt={5}>
-        <p>suramafknjknf</p>
-      </Box>
+      <Grid align="center" xs={12}>
+        Copyright @ Neki.com 2020
+      </Grid>
     </Container>
   );
 }
