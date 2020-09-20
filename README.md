@@ -28,7 +28,7 @@ The various features in ***Neki*** App.
 			Login Screen
 		</td>
 		<td>
-			First User Detail
+			Sign Up Screen
 		</td>
 		<td> Edit Details Of User
 		</td>
