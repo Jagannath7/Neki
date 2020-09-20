@@ -68,7 +68,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NewOrders() {
+export default function NewOrders(props) {
+  /*This props.id is email adress*/
+  console.log(props.id);
   const classes = useStyles();
   const [state, setstate] = useState(rows);
   const handleYesClick = (props) => {
