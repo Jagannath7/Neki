@@ -79,6 +79,8 @@ export default function NewOrders(props) {
         querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
             console.log(doc.id, " => ", doc.data());
+            let fulldata=doc.data();
+            console.log(fulldata);
         });
     })
     .catch(function(error) {
