@@ -17,6 +17,8 @@ The various features in ***Neki*** App.
 
 ## Screenshots
 
+- Mobile App Screenshots
+
 <table align="center">
 	<tr>
 		<td>
