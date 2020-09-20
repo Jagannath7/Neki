@@ -21,7 +21,7 @@ import Chip from "@material-ui/core/Chip";
 
 import Container from "@material-ui/core/Container";
 import { db, auth, storage } from "../config/fire";
-import firebase from '../config/fire';
+import firebase from "../config/fire";
 
 /*Coparite funtion*/
 
@@ -129,7 +129,8 @@ export default function Register() {
     state: " ",
     landmark: " ",
     iconimg: null,
-    iconurl: " https://wolper.com.au/wp-content/uploads/2017/10/image-placeholder.jpg",
+    iconurl:
+      " https://wolper.com.au/wp-content/uploads/2017/10/image-placeholder.jpg",
     password: " ",
     pincode: " ",
   };
@@ -178,7 +179,7 @@ export default function Register() {
     /*
     please change the following code be replacing formData by  returnedTarget 
     */
-   /*let bucketName='images';
+    /*let bucketName='images';
    let filename = returnedTarget.iconimg.substring(returnedTarget.iconimg.lastIndexOf("/") + 1);
    let file=this.state.files[0];
    let storageRef=firebase.storage().ref(`${bucketName}/${filename}`)
@@ -210,8 +211,6 @@ export default function Register() {
       .catch(function (error) {
         console.error("Error adding document: ", error);
       });
-      
-      
   };
 
   return (
@@ -246,7 +245,7 @@ export default function Register() {
                 required
                 fullWidth
                 id="tagline"
-                label="tagline"
+                label="Tagline"
                 name="tagline"
                 autoComplete="tagline"
                 onChange={handleChange}
@@ -272,7 +271,7 @@ export default function Register() {
                 required
                 fullWidth
                 id="phone"
-                label="Phone"
+                label="Phone Number"
                 name="phone"
                 autoComplete="phone"
                 onChange={handleChange}
@@ -285,7 +284,7 @@ export default function Register() {
                 required
                 fullWidth
                 id="street"
-                label="street"
+                label="Street Address"
                 name="street"
                 autoComplete="street"
                 onChange={handleChange}
@@ -298,7 +297,7 @@ export default function Register() {
                 required
                 fullWidth
                 id="city"
-                label="city"
+                label="City"
                 name="city"
                 autoComplete="city"
                 onChange={handleChange}
@@ -311,7 +310,7 @@ export default function Register() {
                 required
                 fullWidth
                 id="state"
-                label="state"
+                label="State"
                 name="state"
                 autoComplete="state"
                 onChange={handleChange}
@@ -324,7 +323,7 @@ export default function Register() {
                 required
                 fullWidth
                 id="pincode"
-                label="pincode"
+                label="Pincode"
                 name="pincode"
                 autoComplete="pincode"
                 onChange={handleChange}
@@ -337,7 +336,7 @@ export default function Register() {
                 required
                 fullWidth
                 id="landmark"
-                label="landmark"
+                label="Landmark"
                 name="landmark"
                 autoComplete="landmark"
                 onChange={handleChange}
