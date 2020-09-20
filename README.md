@@ -53,7 +53,7 @@ The various features in ***Neki*** App.
 			Donation Screen
 		</td>
 		<td>
-			Donated!
+			Profile Screen
 		</td>
 	</tr>
 	<tr>
@@ -72,17 +72,17 @@ The various features in ***Neki*** App.
 
 
 ## Technology Stack
- 	- Android
- 	- Kotlin
- 	- XML
- 	- React
- 	- JavaScript
- 	- JSX
- 	- Firebase Authenication
- 	- Firebase Cloud Storage
- 	- Firebase Cloud Firestore
- 	- Firebase Analytics
- 	- Material Design
+- Android
+- Kotlin
+ - XML
+- React
+ - JavaScript
+ - JSX
+ - Firebase Authenication
+ - Firebase Cloud Storage
+ - Firebase Cloud Firestore
+ - Firebase Analytics
+ - Material Design
 
 
  Built with :heart: by [@IronClad1607](https://github.com/IronClad1607), [@sidhi-sid](https://github.com/sidhi-sid), [@Jagannath7](https://github.com/Jagannath7), [@surajsly](https://github.com/surajsly), [@vibhuvj27](https://github.com/vibhuvj27)
