@@ -46,7 +46,7 @@ function Section2() {
     title: "Let Us Join Hands",
     date: "date",
     description:
-      "You have not lived today until you have done something for someone who can never repay you. Thats why we are asking NGOs to come and join hand with us and let us help you to connect you with the humanitarians of the world. Together for brighter future !!",
+      "You have not lived today until you have done something for someone who can never repay you. Thats why we are asking NGOs to come and join hand with us and let us help you to connect you with the humanitarians of the world. Together for brighter future and better lives !!",
     imageTitle: "kuch tho tha",
     linkText: "Log in",
     image: { people },
