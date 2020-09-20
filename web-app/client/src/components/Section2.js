@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -43,10 +42,10 @@ const useStyles = makeStyles((theme) => ({
 function Section2() {
   const classes = useStyles();
   const post = {
-    title: "NGO",
+    title: "Let Us Join Hands",
     date: "date",
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
+      "You have not lived today until you have done something for someone who can never repay you. Thats why we are asking NGOs to come and join hand with us and let us help you to connect you with the humanitarians of the world. Together for brighter future and better lives !!",
     imageTitle: "kuch tho tha",
     linkText: "Log in",
     image: { people },

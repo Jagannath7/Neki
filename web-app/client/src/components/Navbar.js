@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, ListItem, Tab } from "@material-ui/core";
+import { Link } from "@material-ui/core";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -41,7 +41,16 @@ export default function Navbar(props) {
       <ElevationScroll {...props}>
         <AppBar className="appBar" position="static">
           <Toolbar>
-            <Typography variant="h6">Neki</Typography>
+            <Link href="/">
+              <Typography
+                component="h1"
+                variant="h5"
+                color="textPrimary"
+                key="name"
+              >
+                Neki
+              </Typography>
+            </Link>
             <div className="absolute">
               <Link href="/login">
                 <Button type="button">{props.text}</Button>

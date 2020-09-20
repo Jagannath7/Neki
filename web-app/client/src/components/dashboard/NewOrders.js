@@ -70,14 +70,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NewOrders() {
-  const classes = useStyles();
-  
-  const [state, setstate] = useState(rows);
-  const handleYesClick = (props) => {
-    console.log(state, props);
-    
-    db.collection("transactions").where("toEmail", "==",props.id)
+export default function NewOrders(props) {
+  /*This props.id is email adress*/
+  console.log(props.id);
+  db.collection("transactions").where("toEmail", "==",props.id).where("status","==","NIL")
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -88,6 +84,13 @@ export default function NewOrders() {
     .catch(function(error) {
         console.log("Error getting documents: ", error);
     });
+  const classes = useStyles();
+  
+  const [state, setstate] = useState(rows);
+  const handleYesClick = (props) => {
+    console.log(state, props);
+    
+    
   
 
     // myArray = myArray.filter(function (obj) {

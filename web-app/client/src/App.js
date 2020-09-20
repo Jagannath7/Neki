@@ -7,6 +7,7 @@ import Register from "./components/Register";
 import { Router, Route, Switch } from "react-router-dom";
 import history from "./history";
 import Dashboard from "./components/dashboard/Dashboard";
+import NoMacth from "./components/404";
 /*
 working on routing
 */
@@ -19,7 +20,8 @@ function App() {
         <Route path="/" exact component={LandingPage} />
         <Route path="/login" exact component={Login} />
         <Route path="/register" exact component={Register} />
-        <Route path="/dashboard" exact component={Dashboard} />
+        <Route path="/dashboard/:id" exact component={Dashboard} />
+        <Route component={NoMacth} />
       </Switch>
     </div>
   );

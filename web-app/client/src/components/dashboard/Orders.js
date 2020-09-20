@@ -66,7 +66,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Orders() {
+export default function Orders(props) {
+  /* 
+  this props.id is email addreess
+  */
+  console.log(props.id);
   const classes = useStyles();
   return (
     <React.Fragment>
