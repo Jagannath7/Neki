@@ -70,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function NewOrders(props) {
+<<<<<<< HEAD
   const [state, setstate] = useState(rows);
 
   useEffect(() => {
@@ -88,6 +89,23 @@ export default function NewOrders(props) {
           combinedData.push(doc.data());
 
           // console.log(fulldata);
+=======
+  /*This props.id is email adress*/
+  console.log(props.id);
+  
+  db.collection("transactions").where("toEmail", "==",props.id).where("status","==","NIL")
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            
+              a.push(doc.data());
+            
+            let fulldata=doc.data();
+            console.log(fulldata);
+            
+>>>>>>> aacb490b755db08cc950d600e39446695ad35a32
         });
 
         // console.log(combinedData);
@@ -102,7 +120,13 @@ export default function NewOrders(props) {
   const classes = useStyles();
 
   const handleYesClick = (props) => {
+<<<<<<< HEAD
     // console.log(state, props);
+=======
+    console.log(state, props);
+    
+    
+>>>>>>> aacb490b755db08cc950d600e39446695ad35a32
 
     // myArray = myArray.filter(function (obj) {
     //   return obj.id !== id;

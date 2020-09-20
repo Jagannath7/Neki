@@ -8,6 +8,8 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Title from "./Title";
+import { db, auth, storage } from "../../config/fire";
+import firebase from '../../config/fire';
 
 // Generate Order Data
 function createData(id, date, name, From, nameofarticle, amount) {
@@ -72,6 +74,22 @@ export default function Orders(props) {
   this props.id is email addreess
   */
   console.log(props.id);
+  db.collection("transactions").where("toEmail", "==",props.id).where("status","==","ACCEPTED")
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            let fulldata=doc.data();
+            console.log(fulldata);
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
+
+
+
   const classes = useStyles();
   const [state, setstate] = useState(rows);
 
