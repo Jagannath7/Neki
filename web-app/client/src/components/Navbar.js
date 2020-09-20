@@ -42,7 +42,12 @@ export default function Navbar(props) {
         <AppBar className="appBar" position="static">
           <Toolbar>
             <Link href="/">
-              <Typography variant="h6" color="textPrimary" key="name">
+              <Typography
+                component="h1"
+                variant="h5"
+                color="textPrimary"
+                key="name"
+              >
                 Neki
               </Typography>
             </Link>
