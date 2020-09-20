@@ -30,7 +30,9 @@ class ListOfNgoActivity : AppCompatActivity() {
 
     private val listOfNGOs = ArrayList<NGO>()
 
-    var catName = ""
+    private val refinedList = ArrayList<NGO>()
+
+    private var catName = ""
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +58,7 @@ class ListOfNgoActivity : AppCompatActivity() {
                     Log.d(Tags.ishaanTag, "${ngo.emailId} ${ngo.listCategory}")
                     listOfNGOs.add(ngo)
                 }
-                val refinedList = ArrayList<NGO>()
+                refinedList.clear()
                 for (ngo in listOfNGOs) {
                     if (ngo.listCategory.contains(catName)) {
                         refinedList.add(ngo)
@@ -79,6 +81,7 @@ class ListOfNgoActivity : AppCompatActivity() {
 
     override fun onStop() {
         noteListener.remove()
+        refinedList.clear()
         super.onStop()
     }
 }

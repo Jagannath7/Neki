@@ -100,6 +100,7 @@
             android:layout_height="match_parent"
             android:hint="@string/phone_number"
             android:inputType="number"
+            android:maxLength="10"
             android:textColor="@color/colorText"
             android:textColorHighlight="@color/colorText" />
 

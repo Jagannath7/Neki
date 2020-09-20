@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".activities.EditInformationActivity"></activity>
         <activity android:name=".activities.DonationActivity" />
         <activity android:name=".activities.ListOfNgoActivity" />
         <activity android:name=".activities.HomeActivity" />

@@ -16,6 +16,7 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.systemtron.neki.R
+import com.systemtron.neki.activities.EditInformationActivity
 import com.systemtron.neki.activities.LoginActivity
 import com.systemtron.neki.adapter.TransactionAdapter
 import com.systemtron.neki.modelClass.History
@@ -56,7 +57,8 @@ class ProfileFragment : Fragment() {
         Glide.with(this@ProfileFragment).load(url).into(inflatedView.ivProfilePic)
 
         inflatedView.btnEdit.setOnClickListener {
-            Toast.makeText(requireContext(), "In Progress", Toast.LENGTH_SHORT).show()
+            val editInfoIntent = Intent(requireContext(), EditInformationActivity::class.java)
+            startActivity(editInfoIntent)
         }
 
         inflatedView.btnSignOut.setOnClickListener {
@@ -78,14 +80,22 @@ class ProfileFragment : Fragment() {
                     listOfTransaction.add(history)
                 }
                 Log.d(Tags.ishaanTag, "$listOfTransaction")
-                inflatedView.rvTransactions.apply {
-                    layoutManager =
-                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                    adapter = this@ProfileFragment.adapter
+                if (listOfTransaction.size > 0) {
+                    inflatedView.tvNoItem.visibility = View.GONE
+                    inflatedView.rvTransactions.apply {
+                        layoutManager =
+                            LinearLayoutManager(
+                                requireContext(),
+                                LinearLayoutManager.VERTICAL,
+                                false
+                            )
+                        adapter = this@ProfileFragment.adapter
+                    }
+                } else {
+                    inflatedView.tvNoItem.visibility = View.VISIBLE
                 }
-            }
-            .addOnFailureListener {
-                Log.d(Tags.ishaanTag, "${it.toString()}")
+            }.addOnFailureListener {
+
             }
     }
 }
