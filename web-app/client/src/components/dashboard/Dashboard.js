@@ -26,7 +26,6 @@ import Orders from "./Orders";
 import NewOrders from "./NewOrders";
 import { requirePropFactory } from "@material-ui/core";
 
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -161,16 +160,9 @@ export default function Dashboard() {
 
           <Grid container spacing={3}>
             {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
+            <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
                 <Chart />
-              </Paper>
-            </Grid>
-
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Deposits />
               </Paper>
             </Grid>
 

@@ -342,21 +342,6 @@ export default function Register() {
                 onChange={handleChange}
               />
             </Grid>
-
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={handleChange}
-              />
-            </Grid>
-
             <Grid item xs={12}>
               <FormControl fullWidth className={classes.formControl}>
                 <InputLabel id="demo-mutiple-chip-label">Categary</InputLabel>

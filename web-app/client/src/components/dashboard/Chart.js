@@ -9,7 +9,6 @@ export default function Chart() {
 
   return (
     <React.Fragment>
-      <Title>Logo</Title>
       <ResponsiveContainer>
         <img src={people} alt="logo" />
       </ResponsiveContainer>

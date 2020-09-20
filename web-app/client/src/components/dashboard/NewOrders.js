@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -8,7 +8,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Title from "./Title";
 import { db, auth, storage } from "../../config/fire";
-import firebase from '../../config/fire';
+import firebase from "../../config/fire";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 
@@ -59,7 +59,6 @@ const rows = [
   ),
 ];
 
-
 // myArray = myArray.filter(function( obj ) {
 //   return obj.id !== id;
 // });
@@ -71,36 +70,46 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function NewOrders(props) {
-  /*This props.id is email adress*/
-  console.log(props.id);
-  db.collection("transactions").where("toEmail", "==",props.id).where("status","==","NIL")
-    .get()
-    .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-            let fulldata=doc.data();
-            console.log(fulldata);
-        });
-    })
-    .catch(function(error) {
-        console.log("Error getting documents: ", error);
-    });
-  const classes = useStyles();
-  
   const [state, setstate] = useState(rows);
+
+  useEffect(() => {
+    console.log(props.id);
+    db.collection("transactions")
+      .where("toEmail", "==", props.id)
+      .where("status", "==", "NIL")
+      .get()
+      .then(function (querySnapshot) {
+        let combinedData = [];
+        // console.log(querySnapshot);
+        querySnapshot.forEach(function (doc) {
+          // console.log(doc.data());
+          // doc.data() is never undefined for query doc snapshots
+          // console.log(doc.id, ' => ', doc.data());
+          combinedData.push(doc.data());
+
+          // console.log(fulldata);
+        });
+
+        // console.log(combinedData);
+        setstate(combinedData);
+      })
+      .catch(function (error) {
+        console.log("Error getting documents: ", error);
+      });
+  }, []);
+
+  // console.log(combinedData);
+  const classes = useStyles();
+
   const handleYesClick = (props) => {
-    console.log(state, props);
-    
-    
-  
+    // console.log(state, props);
 
     // myArray = myArray.filter(function (obj) {
     //   return obj.id !== id;
     // });
     setstate(
       state.filter(function (obj) {
-        return obj.id !== props;
+        return obj.fromName !== props;
       })
     );
   };
@@ -112,11 +121,11 @@ export default function NewOrders(props) {
     // });
     setstate(
       state.filter(function (obj) {
-        return obj.id !== props;
+        return obj.fromName !== props;
       })
     );
-   
   };
+  console.log(state);
   return (
     <React.Fragment>
       <Title>New Orders</Title>
@@ -127,25 +136,27 @@ export default function NewOrders(props) {
             <TableCell>Name</TableCell>
             <TableCell>From</TableCell>
             <TableCell>Name of Article</TableCell>
-            <TableCell>Amount</TableCell>
             <TableCell align="right">Option</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {state.map((row) => (
-            <TableRow key={row.id}>
+          {state.map((row, index) => (
+            <TableRow key={row.index}>
               <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.From}</TableCell>
-              <TableCell>{row.nameofarticle}</TableCell>
-              <TableCell>{row.amount}</TableCell>
+              <TableCell>{row.fromName}</TableCell>
+              <TableCell>{row.fromLandmark}</TableCell>
+              <TableCell>{row.description}</TableCell>
               <TableCell align="right">
                 <ButtonGroup
                   size="small"
                   aria-label="small secondary outlined button group"
                 >
-                  <Button onClick={() => handleYesClick(row.id)}>YES</Button>
-                  <Button onClick={() => handleNoClick(row.id)}>NO</Button>
+                  <Button onClick={() => handleYesClick(row.fromName)}>
+                    YES
+                  </Button>
+                  <Button onClick={() => handleNoClick(row.fromName)}>
+                    NO
+                  </Button>
                 </ButtonGroup>
               </TableCell>
             </TableRow>

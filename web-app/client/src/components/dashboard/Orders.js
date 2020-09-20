@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
+import { db, auth, storage } from "../../config/fire";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
@@ -72,37 +73,54 @@ export default function Orders(props) {
   */
   console.log(props.id);
   const classes = useStyles();
+  const [state, setstate] = useState(rows);
+
+  useEffect(() => {
+    console.log(props.id);
+    db.collection("transactions")
+      .where("toEmail", "==", props.id)
+      .where("status", "==", "ACCEPTED")
+      .get()
+      .then(function (querySnapshot) {
+        let combinedData = [];
+        // console.log(querySnapshot);
+        querySnapshot.forEach(function (doc) {
+          // console.log(doc.data());
+          // doc.data() is never undefined for query doc snapshots
+          // console.log(doc.id, ' => ', doc.data());
+          combinedData.push(doc.data());
+
+          // console.log(fulldata);
+        });
+
+        // console.log(combinedData);
+        setstate(combinedData);
+      })
+      .catch(function (error) {
+        console.log("Error getting documents: ", error);
+      });
+  }, []);
+
+  console.log(state);
   return (
     <React.Fragment>
-      <Title>Recent Delivery</Title>
+      <Title>New Orders</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
+            <TableCell>Serial no</TableCell>
             <TableCell>Name</TableCell>
-            <TableCell>From</TableCell>
-            <TableCell>Name of Article</TableCell>
-            <TableCell align="right">Amount</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.From}</TableCell>
-              <TableCell>{row.nameofarticle}</TableCell>
-              <TableCell align="right">{row.amount}</TableCell>
+          {state.map((row, index) => (
+            <TableRow key={index}>
+              <TableCell>{index + 1}</TableCell>
+              <TableCell>{row.fromName}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-
-      <div className={classes.seeMore}>
-        <Link color="primary" href="/">
-          Go home
-        </Link>
-      </div>
     </React.Fragment>
   );
 }
