@@ -7,7 +7,9 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import people from "../assests/people.png";
-
+import food from "../assests/food.jpg";
+import education from "../assests/education.jpg";
+import donate from "../assests/donate.jpg";
 /*
 Ha ha muje pata h sub kuch hard coded hai vo jub api wala code karuge
 tab ishe card akr k ek or sub component bana duga 
@@ -46,17 +48,40 @@ function Section1() {
           <CardActionArea>
             <CardMedia
               className={classes.media}
-              image={people}
+              image={food}
               title="Contemplative Reptile"
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
-                NG0 1
+                Donate In Food !
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s,
+                These estimates show that while 27.8% of India’s population
+                suffered from moderate or severe food insecurity in 2014-16, the
+                proportion rose to 31.6% in 2017-19.
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={4}>
+        <Card className={classes.card}>
+          <CardActionArea>
+            <CardMedia
+              className={classes.media}
+              image={education}
+              title="Contemplative Reptile"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                Donate in Education !
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                More than 27 percent of the country’s youth are excluded from
+                education, employment, or training, while the overwhelming
+                majority of working Indians are employed in the informal
+                sectors.
               </Typography>
             </CardContent>
           </CardActionArea>
@@ -73,34 +98,12 @@ function Section1() {
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
-                NGO 2
+                Donate in Everyway possible !
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s,
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-      </Grid>
-
-      <Grid item xs={12} sm={6} md={4}>
-        <Card className={classes.card}>
-          <CardActionArea>
-            <CardMedia
-              className={classes.media}
-              image={people}
-              title="Contemplative Reptile"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                NGO 3
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s,
+                No one has ever become poor by giving. So come forward and
+                donate in whichever way you want to whether it is education,
+                human resourse management , clothing , Shelter etc.
               </Typography>
             </CardContent>
           </CardActionArea>
