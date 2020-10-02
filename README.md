@@ -15,6 +15,10 @@ The various features in ***Neki*** App.
 - **Searching of Nearby NGOs** 
 - **History of User's Donation**
 
+
+
+#### Link for Mobile App: [Neki.apk](https://bit.ly/NekiAPK)
+
 ## Screenshots
 
 - Mobile App Screenshots
